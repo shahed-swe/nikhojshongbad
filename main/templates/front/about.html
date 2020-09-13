@@ -1,0 +1,98 @@
+<!-- extending base html -->
+{% extends 'user_base.html' %}
+<!-- extended -->
+{% load static %}
+<!-- static file loaded -->
+{% block main_content %}
+<!-- content driven here -->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'front/images/bg_3.jpg'%}');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
+                <h1 class="mb-0 bread">আমাদের সম্পর্কে</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 d-flex order-md-last">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(images/about-1.jpg);">
+                </div>
+            </div>
+            <div class="col-md-6 pr-md-5 py-md-5">
+                <div class="heading-section pt-md-5 mb-4">
+                    <span class="subheading">আমাদের সম্পর্কে</span>
+                    <h2 class="mb-2">অভাবী মানুষদের সাহায্যের হাত বাড়িয়ে দেওয়া</h2>
+                    <p>হারিয়ে যাওয়া মানুষদের প্রিয়জনের কাছে ফিরিয়ে দিতে আমাদের একটি মানবিক প্রয়াস।বাংলাদেশের সকল নিখোজ সংবাদ সবার কাছে দ্রুত পৌছে দিতে নিরলস ভাবে কাজ করে যাওয়ার প্রচেষ্টায়।</p>
+                    <p>এগিয়ে যাওয়ার অংগীকারে।</p>
+                    <p><a href="#" class="btn btn-secondary">সেচ্ছাসেবি হতে ইচ্ছুক?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">নিখোঁজ সংবাদ</span>
+                <h2>আমরা বিশ্বাস করি আমরা আরো অনেক জীবন বাচাতে পারবো।</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 services-2 w-100 text-center">
+                <div class="icon icon-1 d-flex align-items-center justify-content-center"><span class="flaticon-water-drop"></span></div>
+                <div class="text">
+                    <h4>জীবন</h4>
+                </div>
+            </div>
+            <div class="col-md-3 services-2 w-100 text-center">
+                <div class="icon icon-2 d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+                <div class="text">
+                    <h4>চিকিৎসা</h4>
+                </div>
+            </div>
+            <div class="col-md-3 services-2 w-100 text-center">
+                <div class="icon icon-3 d-flex align-items-center justify-content-center"><span class="flaticon-bread"></span></div>
+                <div class="text">
+                    <h4>খাবার</h4>
+                </div>
+            </div>
+            <div class="col-md-3 services-2 w-100 text-center">
+                <div class="icon icon-4 d-flex align-items-center justify-content-center"><span class="flaticon-university"></span></div>
+                <div class="text">
+                    <h4>শিক্ষা</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-hireme bg-secondary">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-8 col-lg-8 d-flex align-items-center">
+                <div class="w-100">
+                    <h2>Best Way to Make a Difference in the Lives of Others</h2>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 d-flex align-items-center justify-content-end">
+                <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-4">Become A Volunteer</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content ends here -->
+{% endblock main_content %}
+<!-- script -->
+{% block scripts %}
+<!-- script start -->
+<!-- script ends -->
+{% endblock scripts %}

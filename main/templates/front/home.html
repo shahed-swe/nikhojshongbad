@@ -1,0 +1,142 @@
+<!-- extending base html -->
+{% extends 'user_base.html' %}
+<!-- extended -->
+{%load static%}
+<!-- static file loaded -->
+{% block main_content %}
+<!-- content driven here -->
+<section class="hero-wrap js-fullheight">
+    <div class="home-slider js-fullheight owl-carousel">
+        <div class="slider-item js-fullheight" style="background-image:url({%static 'front/images/bg_2.jpg'%});">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="overlay-3"></div>
+            <div class="overlay-4"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center">
+                    <div class="col-md-10 col-lg-7 ftco-animate">
+                        <div class="text w-100">
+                            <h2>আস্থা এবং বিশ্বাসে</h2>
+                            <h1 class="mb-3">সাহায্যের হাত সবসময়</h1>
+                            <div class="d-flex meta">
+                                <div class="">
+                                    <p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4">সেচ্ছাসেবি হতে চান?</a></p>
+                                </div>
+                                <a href="#" class="d-flex align-items-center button-link">
+                                    <div class="button-video d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-play"></span>
+                                    </div>
+                                    <span>ভিডিও দেখুন</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item js-fullheight" style="background-image:url({%static 'front/images/bg_3.jpg'%});">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="overlay-3"></div>
+            <div class="overlay-4"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center">
+                    <div class="col-md-10 col-lg-7 ftco-animate">
+                        <div class="text w-100">
+                            <h2>আশা নির্ভর</h2>
+                            <h1 class="mb-3">বিশ্বস্থ অলাভজনক প্রতিষ্ঠান</h1>
+                            <div class="d-flex meta">
+                                <div class="">
+                                    <p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4">সেচ্ছাসেবি হতে চান?</a></p>
+                                </div>
+                                <a href="#" class="d-flex align-items-center button-link">
+                                    <div class="button-video d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-play"></span>
+                                    </div>
+                                    <span>ভিডিও দেখুন</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-section ftco-no-pb" style="background-color: #fd645b !important;">
+    <div style="margin-top:-120px ;" class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span style="color: white !important" class="subheading">আমাদের অঙ্গিকার</span>
+                <h2 style="color: white !important">হারাবে না আর কেউ। স্বজন দের মাঝে আসবে খুশির ঢেউ</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="ftco-section ftco-no-pt">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">সেচ্ছাসেবি</span>
+                <h2>আমাদের সম্পর্কে</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="volunteer">
+                    <div class="img" style="background-image: url('{%static 'front/images/team-1.jpg'%}');"></div>
+                    <div class="text text-1">
+                        <h3>দিপ সাহা</h3>
+                        <span>সেচ্ছাসেবি</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="volunteer">
+                    <div class="img" style="background-image: url('{%static 'front/images/team-2.jpg'%}');"></div>
+                    <div class="text text-2">
+                        <h3>ইভান আহমেদ</h3>
+                        <span>সেচ্ছাসেবি</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="volunteer">
+                    <div class="img" style="background-image: url('{%static 'front/images/team-3.jpg'%}');"></div>
+                    <div class="text text-3">
+                        <h3>ফারিয়া আক্তার</h3>
+                        <span>সেচ্ছাসেবি</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-hireme bg-secondary">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-8 col-lg-8 d-flex align-items-center">
+                <div class="w-100">
+                    <h2>Best Way to Make a Difference in the Lives of Others</h2>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 d-flex align-items-center justify-content-end">
+                <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-4">Become A Volunteer</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content ends here -->
+{% endblock main_content %}
+<!-- script -->
+{% block scripts %}
+<!-- script start -->
+<!-- script ends here -->
+{% endblock scripts %}
