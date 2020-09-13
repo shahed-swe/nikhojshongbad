@@ -16,6 +16,7 @@ from .forms import InfoForm,CreateUserForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import People
 
 def home(request):
     return render(request, 'front/home.html',{"title":"হোম"})
@@ -64,15 +65,15 @@ def is_number(num):
     
     return False
 
-def message(request):
-    return render(request, 'front/message.html')
+# def message(request):
+#     return render(request, 'front/message.html')
 
 def TakeImages(request):
     p_id = request.POST['p_id']
     nick_name = request.POST['nick_name']
     if(is_number(p_id) and nick_name.isalpha()):
         if request.method == 'POST':
-            dataform = InfoForm(request.POST)
+            dataform = InfoForm(request.POST,request.FILES)
             if dataform.is_valid():
                 try:
                     p_id = dataform.cleaned_data['p_id']
@@ -82,11 +83,15 @@ def TakeImages(request):
                     blood_group = dataform.cleaned_data['blood_group']
                     special_mark = dataform.cleaned_data['special_mark']
                     age = dataform.cleaned_data['age']
+                    gardian_name = dataform.cleaned_data['gardian_name']
+                    gardian_phone_number = dataform.cleaned_data['gardian_phone_number']
                     skin_tone = dataform.cleaned_data['skin_tone']
                     dress_up = dataform.cleaned_data['dress_up']
                     phone_number = dataform.cleaned_data['phone_number']
                     last_location = dataform.cleaned_data['last_location']
                     miscellaneous = dataform.cleaned_data['miscellaneous']
+                    image = dataform.cleaned_data['image']
+                    print(image)
                     dataform.save()
                 except:
                     pass
@@ -142,7 +147,7 @@ def TrainImages(request):
     faces, Id = getImagesAndLabels(settings.BASE_DIR+"\main\static\TrainingImage")
     recognizer.train(faces, np.array(Id))
     recognizer.save(settings.BASE_DIR+"\main\static\Model\Training.yml")
-    res = "Image Trained"
+    res = "Image Has Trained Successfully"
     return render(request, "front/message.html", {"title": "Train", "message": res, "value": '3'})
 
 
@@ -169,12 +174,10 @@ def getImagesAndLabels(path):
     return faces, Ids
 
 
-def TrackImages(request):
+def TrackWebCam(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     else:
-        data = criminalData.objects.all()
-        # cv2.createLBPHFaceRecog/nizer()
         recognizer = cv2.face.LBPHFaceRecognizer_create()
         # recognizer = cv2.face.xfeatures2d.SURF_create()
         recognizer.read(settings.BASE_DIR+"\main\static\Model\Training.yml")
@@ -234,6 +237,16 @@ def TrackImages(request):
         cv2.destroyAllWindows()
         #print(track_moment)
         res = track_moment
-        criminal = criminalData.objects.filter(cid=val)
+        lost_people = People.objects.filter(p_id=val)
         # take = len(new_list)
-        return render(request, 'criminal_details.html', {"data": criminal})
+        return render(request, 'front/lost_person_details.html', {"data": lost_people})
+
+
+def TrackImages(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+    else:
+        recognizer = cv2.face.LBPHFaceRecognizer_create()
+        recognizer.read()
+    lost_people = People.objects.filter(p_id=val)
+    return render(request, 'front/lost_person_details.html',{"data":lost_people})

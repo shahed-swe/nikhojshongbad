@@ -54,6 +54,16 @@ class InfoForm(forms.ModelForm):
         'id':'age',
         'placeholder':'নিখোঁজ ব্যক্তির বয়স',
     }))
+    gardian_name = forms.CharField(max_length=120,widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'id':'age',
+        'placeholder':'নিখোঁজ ব্যক্তির অভিভাবক',
+    }))
+    gardian_phone_number = forms.CharField(max_length=120,widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'id':'age',
+        'placeholder':'নিখোঁজ ব্যক্তির অভিভাবক এর ফোন',
+    }))
     skin_tone = forms.CharField(max_length=120,widget=forms.TextInput(attrs={
         'class':'form-control',
         'id':'skin_tone',
@@ -79,9 +89,13 @@ class InfoForm(forms.ModelForm):
         'id':'miscellaneous',
         'placeholder':'নিখোঁজ ব্যক্তির বিবরন',
     }))
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        'class':'form-control',
+        'id':'image',
+    }))
     class Meta:
         model = People
-        fields = ['p_id','nick_name','full_name','address','blood_group','special_mark','age','skin_tone','dress_up','phone_number','last_location','miscellaneous']
+        fields = ['p_id','nick_name','full_name','address','blood_group','special_mark','age','gardian_name','gardian_phone_number','skin_tone','dress_up','phone_number','last_location','miscellaneous','image']
 
 
 
