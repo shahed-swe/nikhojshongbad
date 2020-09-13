@@ -7,4 +7,7 @@ urlpatterns = [
     url(r'^add/$', views.new_details, name ="new_details"),
     url(r'^login/$', views.mylogin, name ="mylogin"),
     url(r'^logout/$', views.mylogout, name ="mylogout"),
+    url(r'^take/$', views.TakeImages, name ="TakeImages"),
+    url(r'^train/$', views.TrainImages, name="TrainImages"),
+    url(r'^message/$', views.message, name ="message"),
 ]

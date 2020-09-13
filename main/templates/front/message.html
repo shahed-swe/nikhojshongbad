@@ -1,0 +1,39 @@
+{%extends 'user_base.html'%}
+<!-- extending template -->
+{%load static%}
+<!-- staiic loaded -->
+{%block main_content%}
+<style>
+    .message-section {
+        padding-top: 100px;
+        background-color: white;
+        padding-bottom: 100px;
+    }
+    
+    .navbar {
+        background-color: #1a1a1a !important;
+        margin: -7px;
+    }
+</style>
+<section class="message-section">
+    <div class="container">
+        <h3>{{message}}</h3>
+        {%if value == '1'%}
+        <!-- for button -->
+        <a class="btn btn-success" href="/train">Train</a>
+        <!-- else -->
+        {%elif value == '3'%}
+        <a class="btn btn-success" href="/add_criminal">Back</a>
+        <!-- else -->
+        {%else%}
+        <a class="btn btn-danger" href="/add_criminal">Back</a>
+        <!-- finally -->
+        {%endif%}
+    </div>
+</section>
+<!-- block end -->
+{%endblock main_content%}
+<!-- scripts are here -->
+{%block scripts%}
+<!-- endblock script -->
+{%endblock scripts%}
