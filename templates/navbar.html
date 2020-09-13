@@ -26,14 +26,19 @@
         <a class="navbar-brand" href="/">নিখোঁজ সংবাদ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
-			</button>
-
+		</button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="/" class="nav-link">হোম</a></li>
                 <li class="nav-item"><a href="/about" class="nav-link">সম্পর্কে</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">নতুন তথ্য</a></li>
+                <li class="nav-item"><a href="/add" class="nav-link">নতুন তথ্য</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">খুজুন</a></li>
+                {%if user.is_authenticated%}
+                <li class="nav-item"><a href="#" class="nav-link">{{user | capfirst}}</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link">লগ আউট</a></li>
+                {%else%}
+                <li class="nav-item"><a href="/login" class="nav-link">লগ ইন</a></li>
+                {%endif%}
             </ul>
         </div>
     </div>

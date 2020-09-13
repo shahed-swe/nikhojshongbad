@@ -28,3 +28,21 @@ def new_details(request):
     else:
         form = InfoForm()
         return render(request, 'front/add_info.html',{"title":'নতুন তথ্য সংযোজন',"form":form})
+
+def mylogin(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == 'POST':
+        utxt = request.POST.get('username')
+        upass = request.POST.get('password')
+        print(utxt,upass)
+        if utxt != "" and upass != "":
+            user = authenticate(username=utxt,password=upass)
+            if user != None:
+                login(request,user)
+                return redirect('/')
+    return render(request, 'front/login.html',{"title":"লগ ইন"})
+
+def mylogout(request):
+    logout(request)
+    return redirect('/')
