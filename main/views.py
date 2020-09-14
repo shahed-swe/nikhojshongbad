@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 
 # Create your views here.
 import cv2,os
@@ -12,11 +12,11 @@ import time
 import csv
 from django.conf import settings
 from django.shortcuts import redirect
-from .forms import InfoForm,CreateUserForm
+from .forms import InfoForm,CreateUserForm,SearchForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import People
+from .models import People,SearchImage
 
 def home(request):
     return render(request, 'front/home.html',{"title":"হোম"})
@@ -173,6 +173,10 @@ def getImagesAndLabels(path):
         Ids.append(Id)
     return faces, Ids
 
+def trackpage(request):
+    form = SearchForm()
+    return render(request, 'front/trackpage.html',{"title":"খুজুন","form":form})
+
 
 def TrackWebCam(request):
     if not request.user.is_authenticated:
@@ -243,10 +247,13 @@ def TrackWebCam(request):
 
 
 def TrackImages(request):
-    if not request.user.is_authenticated:
-        return redirect('/login')
-    else:
-        recognizer = cv2.face.LBPHFaceRecognizer_create()
-        recognizer.read()
-    lost_people = People.objects.filter(p_id=val)
-    return render(request, 'front/lost_person_details.html',{"data":lost_people})
+    if request.method == 'POST':
+        imageform = SearchForm(request.POST, request.FILES)
+        if imageform.is_valid():
+            try:
+                image = imageform.cleaned_data['image']
+                imageform.save()
+            except:
+                pass
+    print(image)
+    return render(request, 'front/lost_person_details.html')

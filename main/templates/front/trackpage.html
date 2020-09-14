@@ -1,0 +1,160 @@
+{%extends 'user_base.html'%}
+<!-- base has extended -->
+{%load static%}
+<!-- static file loaded -->
+{%block main_content%}
+<!-- main content starts here -->
+<style>
+    .navbar {
+        background-color: #1a1a1a !important;
+        margin-top: -7px;
+    }
+    
+    .new-container {
+        padding-top: 95px;
+        margin-top: 100px;
+    }
+    
+    .track-section {
+        background-image: url("{% static 'front/images/background.png' %}");
+        background-repeat: no-repeat;
+        margin-top: -172px;
+        height: 800px;
+    }
+    
+    .track-with-image {
+        margin-top: 0px;
+        margin-bottom: 100px;
+        border: 33px solid #00043c;
+        border-radius: 63%;
+        height: 323px;
+        width: 325px;
+    }
+    
+    .track-with-image p {
+        padding-top: 20px;
+        padding-left: 53px;
+    }
+    
+    a.fa.fa-camera {
+        font-size: 180px;
+        position: relative;
+        top: 31px;
+        left: 35px;
+    }
+    
+    .track-with-image input {
+        display: block;
+        visibility: hidden;
+    }
+    
+    .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+    
+    .searchTerm {
+        width: 100%;
+        border: 3px solid #eec857;
+        border-right: none;
+        padding: 20px;
+        height: 20px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9dbfaf;
+    }
+    
+    .searchTerm:focus {
+        color: #00B4CC;
+    }
+    
+    .searchButton {
+        width: 45px;
+        height: 46px;
+        border: 1px solid #eec857;
+        background: #eec857;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    
+    .new-nav-bar {
+        margin-top: 100px;
+    }
+    
+    .new-nav-bar li {
+        margin-left: 10%;
+        list-style-type: none;
+    }
+    
+    .new-nav-bar li a {
+        border-radius: 0px !important;
+    }
+</style>
+<section class="simeple-nav col-4 mx-auto">
+    <ul class="new-nav-bar">
+        <li><a id="search-one" class="float-left btn btn-primary" href="#">ছবির সাহায্যে খুজুন</a></li>
+        <li><a id="search-two" class="btn btn-primary" style="margin-left:20px" href="#">পরিচয় দিয়ে খুজুন</a></li>
+    </ul>
+</section>
+<section class="track-section">
+    <div class="container new-container">
+        <div class="row">
+            <div class="col-12 col-md-6 col-sm-12">
+                <div class="track-with-image">
+                    <a class="fa fa-camera" href="/trackweb"></a>
+                    <p>Search with Webcam</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-sm-10 d-flex flex-row-reverse">
+                <div class="track-with-image">
+                    <form id="search-form" method="POST" action='/trackimg/' enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <a class="fa fa-camera" id="search" href="#"></a>
+                        <p>Search with Image</p>
+                        {{form.image}}
+                        <button class="btn btn-primary float-right" type="submit">Sumit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-md-10 col-sm-12 mx-auto searchbar">
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="সার্চ করুন">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main content ends here -->
+{%endblock main_content%}
+<!-- script tag here -->
+{%block scripts%}
+<!-- script start -->
+<script>
+    $(document).ready(function() {
+        $('.track-with-image').css('display', 'none');
+        $('#search-one').on('click', function() {
+            $('.track-with-image').css('display', '');
+            $('.searchbar').css('display', 'none');
+        })
+        $("#search-two").on('click', function() {
+            $('.track-with-image').css('display', 'none');
+            $('.searchbar').css('display', '');
+        })
+
+        $("#search").click(function() {
+                $('input').click();
+            })
+            // if ($('#searchval').val() != '') {
+            //     $('#search-form').submit();
+            // }
+    })
+</script>
+<!-- script ends here -->
+{%endblock scripts%}

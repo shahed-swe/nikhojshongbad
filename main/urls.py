@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^take/$', views.TakeImages, name ="TakeImages"),
     url(r'^train/$', views.TrainImages, name="TrainImages"),
     # url(r'^message/$', views.message, name ="message"),
+
+    url(r'^track/$',views.trackpage,name="trackpage"),
     url(r'^trackweb/$',views.TrackWebCam,name="TrackWebCam"),
     url(r'^trackimg/$',views.TrackImages,name="TrackImages"),
     

@@ -33,5 +33,12 @@ class People(models.Model):
     def __str__(self):
         return self.nick_name + ' | '+str(self.p_id)
 
+
     class Meta:
         db_table = 'people_information'
+
+class SearchImage(models.Model):
+    image = models.ImageField(upload_to='search/',null=True)
+
+    def __str__(self):
+        return "Image" +' | '+str(self.pk)

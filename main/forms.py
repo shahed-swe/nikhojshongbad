@@ -1,5 +1,5 @@
 from django import forms
-from .models import People
+from .models import People,SearchImage
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
@@ -150,3 +150,12 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'last_name',
                   'email', 'password1', 'password2']
+
+
+class SearchForm(forms.ModelForm):
+
+    image = forms.ImageField()
+    
+    class Meta:
+        model = SearchImage
+        fields = ['image']
