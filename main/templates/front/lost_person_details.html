@@ -4,11 +4,11 @@
 <!-- static file loaded -->
 {%block main_content%}
 <!-- main content starts here -->
-
+{%for i in data%} {{i.nick_name}} {%endfor%}
 <!-- main content ends here -->
 {%endblock main_content%}
 <!-- script tag here -->
-{%block scripts%} 
+{%block scripts%}
 <!-- script start -->
 <!-- script ends here -->
 {%endblock scripts%}

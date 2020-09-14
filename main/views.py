@@ -202,7 +202,6 @@ def TrackWebCam(request):
             for(x, y, w, h) in faces:
                 cv2.rectangle(im, (x, y), (x+w, y+h), (225, 0, 0), 2)
                 Id, conf = recognizer.predict(gray[y:y+h, x:x+w])
-                print(conf)
                 if(conf < 50):
                     ts = time.time()
                     date = datetime.datetime.fromtimestamp(
@@ -256,4 +255,29 @@ def TrackImages(request):
             except:
                 pass
     print(image)
-    return render(request, 'front/lost_person_details.html')
+    recognizer = cv2.face.LBPHFaceRecognizer_create() #creating the recognizer file
+    recognizer.read(settings.BASE_DIR+"\main\static\Model\Training.yml")
+    path = settings.BASE_DIR + "\media\search\{}".format(str(image))
+    new_image = cv2.imread(path)
+    gray = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)
+    harcascadePath = cv2.CascadeClassifier(settings.BASE_DIR + "\main\static\cascade\haarcascade_frontalface_default.xml")
+    df = pd.read_csv(settings.BASE_DIR +
+                     "\main\static\LostPeopleDetails\LostPeopleDetails.csv")
+    faces = harcascadePath.detectMultiScale(gray, 1.2, 5)
+    val = 0
+    for x,y,w,h in faces:
+        cv2.rectangle(new_image, (x,y),(x+w, y+h), (255,0,0),5)
+        Id,conf = recognizer.predict(gray[y:y+h, x:x+w])
+        print(conf)
+        if(conf < 50):
+            val = Id
+        else:
+            Id = 'Not in Database'
+        if(conf > 75):
+            noOfFile = len(os.listdir(settings.BASE_DIR +
+                                      "\main\static\ImagesUnknown"))+1
+            cv2.imwrite(settings.BASE_DIR+"\main\static\ImagesUnknown\Image"+str(noOfFile) +
+                        ".jpg", new_image[y:y+h, x:x+w])
+    cv2.destroyAllWindows()
+    data = People.objects.filter(p_id=val)
+    return render(request, 'front/lost_person_details.html',{"data":data})
