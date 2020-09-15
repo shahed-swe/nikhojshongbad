@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^track/$',views.trackpage,name="trackpage"),
     url(r'^trackweb/$',views.TrackWebCam,name="TrackWebCam"),
     url(r'^trackimg/$',views.TrackImages,name="TrackImages"),
+    url(r'^person_details/(?P<word>.*)/$', views.person_details, name="person_details"),
 ]

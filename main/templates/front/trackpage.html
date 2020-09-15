@@ -157,7 +157,7 @@
                             <td>{{i.full_name}}</td>
                             <td>{{i.age}}</td>
                             <td>{{i.gardian_name}}</td>
-                            <td><a href="#" class="btn btn-primary">Show Details</a></td>
+                            <td><a href="{% url 'person_details' word=i.p_id %}" class="btn btn-primary">Show Details</a></td>
                         </tr>
                         {%endfor%}
                     </tbody>
@@ -194,9 +194,7 @@
     function Result() {
         event.preventDefault();
         var msg = $('#searchitem').val();
-        console.log(msg)
         var data = msg.toLowerCase();
-        console.log(data)
         if (data) {
             $('table').css('display', '');
             $("#person #myTable").filter(function() {

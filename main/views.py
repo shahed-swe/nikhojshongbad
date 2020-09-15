@@ -31,6 +31,10 @@ def new_details(request):
         form = InfoForm()
         return render(request, 'front/add_info.html',{"title":'নতুন তথ্য সংযোজন',"form":form})
 
+def person_details(request,word):
+    data = People.objects.filter(p_id=word)
+    return render(request, 'front/lost_person_details.html', {"title": "Details","data": data})
+
 def mylogin(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -243,7 +247,7 @@ def TrackWebCam(request):
         res = track_moment
         lost_people = People.objects.filter(p_id=val)
         # take = len(new_list)
-        return render(request, 'front/lost_person_details.html', {"data": lost_people})
+        return render(request, 'front/lost_person_details.html', {"data": lost_people,"title":"Details"})
 
 
 def TrackImages(request):
@@ -281,6 +285,6 @@ def TrackImages(request):
                         ".jpg", new_image[y:y+h, x:x+w])
     cv2.destroyAllWindows()
     data = People.objects.filter(p_id=val)
-    return render(request, 'front/lost_person_details.html',{"data":data})
+    return render(request, 'front/lost_person_details.html', {"data": data, "title": "Details"})
 
 
