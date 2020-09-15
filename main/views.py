@@ -284,6 +284,3 @@ def TrackImages(request):
     return render(request, 'front/lost_person_details.html',{"data":data})
 
 
-def details_page(request):
-    obj = People.objects.filter(p_id=1233)
-    return render(request,'front/lost_person_details.html',{"data":obj})
