@@ -4,7 +4,120 @@
 <!-- static file loaded -->
 {%block main_content%}
 <!-- main content starts here -->
-{%for i in data%} {{i.nick_name}} {%endfor%}
+<style>
+    .navbar {
+        background-color: #1a1a1a !important;
+        margin-top: -7px;
+    }
+    
+    .user-profile {
+        padding-top: 78px;
+        padding-bottom: 78px;
+        background-image: url("{% static 'front/images/background.png'%}");
+    }
+    
+    .user-profile .title {
+        margin-left: -15px;
+        color: #eec856;
+    }
+    
+    .image-card h4 {
+        border: 2px solid #eec856;
+        border-top: 5px solid #eec856;
+        height: 39px;
+        width: 200px;
+        padding-left: 11%;
+    }
+    
+    i.fa {
+        text-align: center;
+        color: #eec856;
+        font-size: 0.5cm;
+        margin-top: 10px;
+    }
+    
+    .new-title {
+        padding-left: 10px;
+        color: gray;
+    }
+    
+    .new-border-one {
+        border: 1px solid #eec856;
+        border-top: 4px solid #eec856;
+        margin-right: -20px;
+        border-bottom: none;
+        border-left: none;
+    }
+    
+    .new-border-two {
+        border: 1px solid #eec856;
+        border-top: 4px solid #eec856;
+        margin-right: -20px;
+        border-left: 19px solid #eec856;
+        border-bottom: none;
+        border-right: none;
+    }
+</style>
+<section class="user-profile">
+    <div class="container">
+        <div class="col-12 col-lg-10 col-md-10">
+            <h1 class="title">নিখোঁজ ব্যক্তির তথ্য</h1>
+        </div>
+        <div class="row">
+            <!-- data -->
+            {%for i in data%}
+            <div class="col-12 col-lg-4 col-md-4">
+                <div class="image-card">
+                    <h4>ব্যক্তির ছবি</h4>
+                    <img src="{{i.image.url}}" alt="" class="rounded img-fluid w-5" style="height: 200px;width: 200px;">
+                </div>
+                <i class="fa fa-phone"><p class="new-title float-right">Phone: {{i.phone_number}}</p></i>
+                <br>
+                <i class="fa fa-address-card"><p class="new-title float-right">Address: {{i.address}}</p></i>
+                <br>
+                <i class="fa fa-heartbeat"><p class="new-title float-right">B-Group: {{i.blood_group}}</p></i>
+                <br>
+                <i class="fa fa-child"><p class="new-title float-right">Age: {{i.age}}</p></i>
+            </div>
+            <div class="col-12 col-lg-4 col-md-4 new-border-one">
+                <i class="fa fa-user"></i>
+                <label for="full_name_label">পুর্ন নামঃ</label>
+                <p>{{i.full_name}}</p>
+
+                <i class="fa fa-stethoscope"></i>
+                <label for="special_mark_label">গুরুত্তপুর্ন চিহ্নঃ</label>
+                <p>{{i.special_mark}}</p>
+
+                <i class="fa fa-user"></i>
+                <label for="gardian_name_label">অভিভাবক এর নামঃ</label>
+                <p>{{i.gardian_name}}</p>
+
+                <i class="fa fa-phone"></i>
+                <label for="gardian_phone_label">অভিভাবক এর ফোনঃ</label>
+                <p>{{i.gardian_phone_number}}</p>
+            </div>
+            <div class="col-12 col-lg-4 col-md-4 new-border-two">
+                <i class="fa fa-adjust"></i>
+                <label for="skin_tone_label">গায়ের রংঃ</label>
+                <p>{{i.skin_tone}}</p>
+
+                <i class="fa fa-user-circle"></i>
+                <label for="dress_up_label">পরিহিত কাপড়ঃ</label>
+                <p>{{i.dress_up}}</p>
+
+                <i class="fa fa-location-arrow"></i>
+                <label for="dress_up_label">শেষ দেখা গিয়েছিলঃ</label>
+                <p>{{i.last_location}}</p>
+
+                <i class="fa fa-align-left"></i>
+                <label for="dress_up_label">বিবৃতিঃ</label>
+                <p>{{i.miscellaneous}}</p>
+            </div>
+            {%endfor%}
+            <!-- data end -->
+        </div>
+    </div>
+</section>
 <!-- main content ends here -->
 {%endblock main_content%}
 <!-- script tag here -->

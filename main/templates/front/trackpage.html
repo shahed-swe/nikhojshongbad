@@ -43,6 +43,13 @@
         left: 35px;
     }
     
+    a.fa.fa-image {
+        font-size: 180px;
+        position: relative;
+        top: 31px;
+        left: 35px;
+    }
+    
     .track-with-image input {
         display: block;
         visibility: hidden;
@@ -93,6 +100,10 @@
     .new-nav-bar li a {
         border-radius: 0px !important;
     }
+    
+    .extra-btn {
+        margin-top: -10px;
+    }
 </style>
 <section class="simeple-nav col-4 mx-auto">
     <ul class="new-nav-bar">
@@ -113,10 +124,10 @@
                 <div class="track-with-image">
                     <form id="search-form" method="POST" action='/trackimg/' enctype="multipart/form-data">
                         {%csrf_token%}
-                        <a class="fa fa-camera" id="search" href="#"></a>
+                        <a class="fa fa-image" id="search" href="#"></a>
                         <p>Search with Image</p>
                         {{form.image}}
-                        <button class="btn btn-primary float-right" type="submit">Sumit</button>
+                        <button class="btn btn-primary float-right extra-btn" type="submit">Sumit</button>
                     </form>
                 </div>
             </div>
@@ -127,6 +138,30 @@
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">আইডি</th>
+                            <th scope="col">ডাক নাম</th>
+                            <th scope="col">পুর্ন নাম</th>
+                            <th scole="col">বয়স</th>
+                            <th scoole="col">অভিভাবক</th>
+                            <th scoole="col">সব</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for i in data%}
+                        <tr>
+                            <th scope="row">{{i.p_id}}</th>
+                            <td>{{i.nick_name}}</td>
+                            <td>{{i.full_name}}</td>
+                            <td>{{i.age}}</td>
+                            <td>{{i.gardian_name}}</td>
+                            <td><button class="btn btn-primary">Show Details</button></td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -142,18 +177,14 @@
         $('#search-one').on('click', function() {
             $('.track-with-image').css('display', '');
             $('.searchbar').css('display', 'none');
-        })
+        });
         $("#search-two").on('click', function() {
             $('.track-with-image').css('display', 'none');
             $('.searchbar').css('display', '');
-        })
-
+        });
         $("#search").click(function() {
-                $('input').click();
-            })
-            // if ($('#searchval').val() != '') {
-            //     $('#search-form').submit();
-            // }
+            $('input').click();
+        });
     })
 </script>
 <!-- script ends here -->

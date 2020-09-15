@@ -175,7 +175,8 @@ def getImagesAndLabels(path):
 
 def trackpage(request):
     form = SearchForm()
-    return render(request, 'front/trackpage.html',{"title":"খুজুন","form":form})
+    data = People.objects.all()
+    return render(request, 'front/trackpage.html',{"title":"খুজুন","form":form,"data":data})
 
 
 def TrackWebCam(request):
@@ -281,3 +282,8 @@ def TrackImages(request):
     cv2.destroyAllWindows()
     data = People.objects.filter(p_id=val)
     return render(request, 'front/lost_person_details.html',{"data":data})
+
+
+def details_page(request):
+    obj = People.objects.filter(p_id=1233)
+    return render(request,'front/lost_person_details.html',{"data":obj})
