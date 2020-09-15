@@ -133,7 +133,7 @@
             </div>
             <div class="col-12 col-md-10 col-sm-12 mx-auto searchbar">
                 <div class="search">
-                    <input type="text" class="searchTerm" placeholder="সার্চ করুন">
+                    <input type="text" onkeyup="Result()" id="searchitem" class="searchTerm" placeholder="সার্চ করুন">
                     <button type="submit" class="searchButton">
                         <i class="fa fa-search"></i>
                     </button>
@@ -149,15 +149,15 @@
                             <th scoole="col">সব</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="person-filter-section" id="person">
                         {%for i in data%}
-                        <tr>
+                        <tr class="new-card" id="myTable">
                             <th scope="row">{{i.p_id}}</th>
                             <td>{{i.nick_name}}</td>
                             <td>{{i.full_name}}</td>
                             <td>{{i.age}}</td>
                             <td>{{i.gardian_name}}</td>
-                            <td><button class="btn btn-primary">Show Details</button></td>
+                            <td><a href="#" class="btn btn-primary">Show Details</a></td>
                         </tr>
                         {%endfor%}
                     </tbody>
@@ -185,7 +185,29 @@
         $("#search").click(function() {
             $('input').click();
         });
+
+
     })
+    $('.person-filter-section .new-card').css('display', 'none');
+    $('table').css('display', 'none');
+
+    function Result() {
+        event.preventDefault();
+        var msg = $('#searchitem').val();
+        console.log(msg)
+        var data = msg.toLowerCase();
+        console.log(data)
+        if (data) {
+            $('table').css('display', '');
+            $("#person #myTable").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(data) > -1);
+            });
+        } else {
+            $('table').css('display', 'none');
+            $('.person-filter-section .new-card').css('display', 'none');
+        }
+
+    }
 </script>
 <!-- script ends here -->
 {%endblock scripts%}
