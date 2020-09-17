@@ -18,12 +18,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import People,SearchImage
 
+# home view
 def home(request):
     return render(request, 'front/home.html',{"title":"হোম"})
 
+# about view
 def about(request):
     return render(request, 'front/about.html',{"title":"সম্পর্কে"})
 
+# create form
 def new_details(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -31,10 +34,12 @@ def new_details(request):
         form = InfoForm()
         return render(request, 'front/add_info.html',{"title":'নতুন তথ্য সংযোজন',"form":form})
 
+# person details
 def person_details(request,word):
     data = People.objects.filter(p_id=word)
     return render(request, 'front/lost_person_details.html', {"title": "Details","data": data})
 
+# login function
 def mylogin(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -49,10 +54,12 @@ def mylogin(request):
                 return redirect('/')
     return render(request, 'front/login.html',{"title":"লগ ইন"})
 
+# logout function
 def mylogout(request):
     logout(request)
     return redirect('/')
 
+# check the value is an integer or not
 def is_number(num):
     try:
         float(num)
@@ -69,9 +76,7 @@ def is_number(num):
     
     return False
 
-# def message(request):
-#     return render(request, 'front/message.html')
-
+# view for capturing images and get those data to set them on their database
 def TakeImages(request):
     p_id = request.POST['p_id']
     nick_name = request.POST['nick_name']
@@ -142,7 +147,7 @@ def TakeImages(request):
             res = "Enter Numeric Id"
             return render(request, "front/message.html", {"title": "Track", "message": res, "value": "0"})
 
-
+# model trainer
 def TrainImages(request):
     recognizer = cv2.face_LBPHFaceRecognizer.create()
     # recognizer = cv2.xfeatures2d.SURF_create()
@@ -154,7 +159,7 @@ def TrainImages(request):
     res = "Image Has Trained Successfully"
     return render(request, "front/message.html", {"title": "Train", "message": res, "value": '3'})
 
-
+# label and id separetor
 def getImagesAndLabels(path):
     #get the path of all the files in the folder
     imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
@@ -177,18 +182,19 @@ def getImagesAndLabels(path):
         Ids.append(Id)
     return faces, Ids
 
+# trackpage view for search form
 def trackpage(request):
     form = SearchForm()
     data = People.objects.all()
     return render(request, 'front/trackpage.html',{"title":"খুজুন","form":form,"data":data})
 
-
+# image recognition view with web cam
 def TrackWebCam(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     else:
         recognizer = cv2.face.LBPHFaceRecognizer_create()
-        # recognizer = cv2.face.xfeatures2d.SURF_create()
+        # recognizer = cv2.xfeatures2d.SURF_create()
         recognizer.read(settings.BASE_DIR+"\main\static\Model\Training.yml")
         harcascadePath = settings.BASE_DIR + \
             "\main\static\cascade\haarcascade_frontalface_default.xml"
@@ -249,7 +255,7 @@ def TrackWebCam(request):
         # take = len(new_list)
         return render(request, 'front/lost_person_details.html', {"data": lost_people,"title":"Details"})
 
-
+# image recognition view with images
 def TrackImages(request):
     if request.method == 'POST':
         imageform = SearchForm(request.POST, request.FILES)
@@ -261,6 +267,7 @@ def TrackImages(request):
                 pass
     print(image)
     recognizer = cv2.face.LBPHFaceRecognizer_create() #creating the recognizer file
+    # recognizer = cv2.face.xfeatures2d.SURF_create() #using surf algorithm to recognize that file
     recognizer.read(settings.BASE_DIR+"\main\static\Model\Training.yml")
     path = settings.BASE_DIR + "\media\search\{}".format(str(image))
     new_image = cv2.imread(path)
