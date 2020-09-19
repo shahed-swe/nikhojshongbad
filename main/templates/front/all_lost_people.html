@@ -1,0 +1,65 @@
+{%extends 'user_base.html'%}
+<!-- base has extended -->
+{%load static%}
+<!-- static file loaded -->
+{%block main_content%}
+<!-- main content starts here -->
+<style>
+    .navbar {
+        background-color: black !important;
+        margin-top: -7px;
+    }
+    
+    .lost_peoples {
+        background-image: url("{% static 'front/images/background.png'%}");
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    
+    .lost_peoples h1 {
+        padding-bottom: 30px;
+        color: #eec857;
+    }
+    
+    .lost_peoples .card {
+        border: none !important;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-left: 75px;
+    }
+    
+    .lost_peoples .card-img-top {
+        border-top-left-radius: calc(0.45rem - 1px) !important;
+        border-top-right-radius: calc(0.45rem - 1px) !important;
+        border-bottom-left-radius: calc(0.45rem - 1px) !important;
+        border-bottom-right-radius: calc(0.45rem - 1px) !important;
+    }
+    
+    .card-body h5 {
+        width: 196px !important;
+    }
+</style>
+<section class="lost_peoples">
+    <div class="container">
+        <h1 class="text-center">{{title}}</h1>
+        <div class="row">
+            {%for i in data%}
+            <div class="card col-12 col-lg-4">
+                <div class="card-img">
+                    <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" style="height: 200px;width: 230px ;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{i.full_name}}</h5>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+<!-- main content ends here -->
+{%endblock main_content%}
+<!-- script tag here -->
+{%block scripts%}
+<!-- script start -->
+<!-- script ends here -->
+{%endblock scripts%}

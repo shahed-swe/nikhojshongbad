@@ -39,6 +39,12 @@ def person_details(request,word):
     data = People.objects.filter(p_id=word)
     return render(request, 'front/lost_person_details.html', {"title": "Details","data": data})
 
+#all person 
+def all_people(request):
+    data = People.objects.all()
+    return render(request, 'front/all_lost_people.html', {"title": "নিখোঁজ ব্যক্তি গন","data": data})
+
+
 # login function
 def mylogin(request):
     if request.user.is_authenticated:
