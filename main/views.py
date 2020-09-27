@@ -200,7 +200,6 @@ def TrackWebCam(request):
         return redirect('/login')
     else:
         recognizer = cv2.face.LBPHFaceRecognizer_create()
-        # recognizer = cv2.xfeatures2d.SURF_create()
         recognizer.read(settings.BASE_DIR+"\main\static\Model\Training.yml")
         harcascadePath = settings.BASE_DIR + \
             "\main\static\cascade\haarcascade_frontalface_default.xml"
